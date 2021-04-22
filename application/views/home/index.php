@@ -141,30 +141,18 @@
 
             <div class="section-title" data-aos="fade-up">
                 <h2>Layanan Terbaik</h2>
-                <p>Berikut adalah 3 layanan terbaik kami dari ASURANSIKU</p>
+                <p>Berikut adalah layanan terbaik kami dari ASURANSIKU</p>
             </div>
 
             <div class="row">
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="col-md-12 col-lg-12 d-flex align-items-stretch mb-5 mb-lg-0">
                     <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                        <h4 class="title"><a href="">Asuransi Perlindungan</a></h4>
-                        <p class="description">Asuransi perlindungan adalah jenis layanan untuk melindungi anda apabila ada kecelakaan yang tidak di inginkan</p>
+                        <h4 class="title"><a href="">Asuransi Pedidikan</a></h4>
+                        <p class="description">Asuransi Pendidikan
+                            Lindungi keceriaan pendidikan anak anda dengan memilih layanan asuransi pendidikan dari ASURANSIKU dan nikmati keuntungannya</p>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                        <h4 class="title"><a href="">Asuransi Plus Tabungan</a></h4>
-                        <p class="description">Asuransi Plus Tabungan adalah sarana penyimpanan uang agar lebih aman daripada uang disimpan dirumah, maka dari itu akan mengurangi resiko kehilangan atau kemalingan</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                        <h4 class="title"><a href="">Asuransi Kesehatan</a></h4>
-                        <p class="description">Asuransi Kesehatan adalah jenis pertanggungan asuransi yang membayar biaya medis, bedah atau terkait biaya perawatan kesehatan seperti yang disebutkan dalam polis asuransi</p>
-                    </div>
-                </div>
 
             </div>
 

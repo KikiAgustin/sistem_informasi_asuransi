@@ -9,8 +9,8 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="#">Produk</a></li>
-                <li><a class="nav-link scrollto" href="#">layanan</a></li>
+                <!-- <li><a class="nav-link scrollto" href="#">Produk</a></li> -->
+                <li><a class="nav-link scrollto" href="#">Pendidikan</a></li>
                 <li><a class="nav-link scrollto " href="#contact">Kontak</a></li>
                 <li><a class="getstarted scrollto">Daftar Sekarang</a></li>
             </ul>
