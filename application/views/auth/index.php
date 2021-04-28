@@ -41,7 +41,7 @@
                         Halaman Login
                     </span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Masukan email wajib diisi">
+                    <div class="wrap-input100 validate-input" data-validate="email wajib diisi">
                         <input class="input100" type="text" name="email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
