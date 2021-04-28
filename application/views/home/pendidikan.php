@@ -132,5 +132,8 @@
                 </div>
             </div>
         </div>
+        <div class="d-grid gap-2 mt-5">
+            <a href="#" class="btn btn-primary">Daftar Sekarang</a>
+        </div>
     </div>
 </section>
