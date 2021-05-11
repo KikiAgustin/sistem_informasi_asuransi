@@ -68,11 +68,11 @@
                     <p>
                         ASURANSIKU adalah satu-satunya perusahaan yang memberikan layanan asuransi jiwa kepada seluruh rakyak indonesia
                     </p>
-                    <ul>
+                    <!-- <ul>
                         <li><i class="ri-check-double-line"></i> Asuransi Perlindungan (protection)</li>
                         <li><i class="ri-check-double-line"></i> Asuransi Plus Tabungan (saving)</li>
                         <li><i class="ri-check-double-line"></i> Asuransi Kesehatan (health)</li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
                     <p>
@@ -380,7 +380,7 @@
     </section><!-- End Team Section -->
 
     <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq">
+    <!-- <section id="faq" class="faq">
         <div class="container">
 
             <div class="section-title" data-aos="fade-up">
@@ -397,7 +397,7 @@
                         Pengajuan Duplikat polis dapat diajukan dengan cara mengisi formulir pengajuan duplikat polis dan melampirkan surat pernyataan Polis hilang dan juga membayar biaya duplikat polis.
                     </p>
                 </div>
-            </div><!-- End F.A.Q Item-->
+            </div>
 
             <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-lg-5">
@@ -415,7 +415,7 @@
                         </ol>
                     </p>
                 </div>
-            </div><!-- End F.A.Q Item-->
+            </div>
 
             <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                 <div class="col-lg-5">
@@ -432,7 +432,7 @@
                         </ol>
                     </p>
                 </div>
-            </div><!-- End F.A.Q Item-->
+            </div>
 
             <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                 <div class="col-lg-5">
@@ -444,7 +444,7 @@
                         Nasabah dapat membatalkan selama 14 hari apabila tidak menyetujui syarat-syarat dan ketentuan dalam ketentuan Polis karena alasan apapun. Penanggung akan mengembalikan Premi yang telah dibayarkan dikurangi biaya pembatalan Polis.
                     </p>
                 </div>
-            </div><!-- End F.A.Q Item-->
+            </div>
 
             <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                 <div class="col-lg-5">
@@ -456,7 +456,7 @@
                         Maka polis menjadi Lapse artinya proteksi asuransi tidak berlaku lagi
                     </p>
                 </div>
-            </div><!-- End F.A.Q Item-->
+            </div>
 
             <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
                 <div class="col-lg-5">
@@ -468,11 +468,11 @@
                         Untuk kelengkapan dokumen berupa kartu tanda pengenal (KTP/Kartu Keluarga/Surat Nikah) bisa dikirimkan melalui fax/email. Untuk dokumen pendukung lain yang merupakan asli/copy legalisir, mohon dikirimkan melalui surat/kurir atau diantar langsung ke ASURANSIKU dengan alamat yang tertera di atas
                     </p>
                 </div>
-            </div><!-- End F.A.Q Item-->
+            </div>
 
 
         </div>
-    </section><!-- End F.A.Q Section -->
+    </section> -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
