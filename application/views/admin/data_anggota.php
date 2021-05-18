@@ -3,51 +3,48 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Data Anggota</h1>
     </div>
+    <?= $this->session->flashdata('message'); ?>
+
+    <a class="btn btn-primary mb-3" href="<?= base_url('Admin/tambahAnggota'); ?>">Tambah Data Anggota</a>
 
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Anggota</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>No KTP </th>
+                                    <th>Nama Nasabah</th>
+                                    <th>Umur</th>
+                                    <th>Alamat</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>63</td>
-                                    <td>2011/07/25</td>
-                                    <td>$170,750</td>
-                                </tr>
-                                <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                    <td>2009/01/12</td>
-                                    <td>$86,000</td>
-                                </tr>
+                                <?php foreach ($anggota as $value) : ?>
+                                    <tr>
+                                        <td><?= $value['ktp']; ?></td>
+                                        <td><?= $value['nama']; ?></td>
+                                        <td><?= $value['umur']; ?></td>
+                                        <td><?= $value['alamat']; ?></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Aksi
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="<?= base_url('Admin/editAnggota/') . $value['id_anggota']; ?>">Edit</a>
+                                                    <a class="dropdown-item" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" href="<?= base_url('Admin/hapusAnggota/') .  $value['id_anggota']; ?> ">Hapus</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
