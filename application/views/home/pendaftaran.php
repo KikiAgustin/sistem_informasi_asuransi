@@ -41,7 +41,7 @@
             </div>
 
             <div class="col-lg-4">
-                <div class="portfolio-info">
+                <!-- <div class="portfolio-info">
                     <h3>Project information</h3>
                     <ul>
                         <li><strong>Category</strong>: Web design</li>
@@ -49,11 +49,16 @@
                         <li><strong>Project date</strong>: 01 March, 2020</li>
                         <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
                     </ul>
-                </div>
+                </div> -->
                 <div class="portfolio-description">
-                    <h2>This is an example of portfolio detail</h2>
+                    <h2>Pendaftaran Asuransi Pendidikan</h2>
                     <p>
-                        Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+                        Sebelum teman-teman mendaftar Asuransi pendidikan pada perusahaan kami, silahkan baca terlebih dahulu informasi dibawah ini yang bisa anda download
+                        <div class="portfolio-info">
+                            <ul>
+                                <li><strong>Informasi Asuransi Pendidikan</strong>: <a target="_blank" href="<?= base_url('assets/formulir/informasi.pdf'); ?>">download disini</a></li>
+                            </ul>
+                        </div>
                     </p>
                 </div>
             </div>
