@@ -213,4 +213,102 @@ class Admin extends CI_Controller
         $this->load->view('admin/detail_premi');
         $this->load->view('templates/footer');
     }
+
+
+    public function klaim()
+    {
+        $anggota = $this->db->get('data_anggota')->result_array();
+        $data = [
+            'judul'     => "Halaman Admin | Klaim",
+            'anggota'   => $anggota
+        ];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/klaim');
+        $this->load->view('templates/footer');
+    }
+
+
+    public function detailKlaim($id_anggota)
+    {
+        $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
+        $klaim = $this->db->get_where('klaim_asuransi', ['id_anggota' => $id_anggota])->result_array();
+
+        if ($klaim) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>' . $anggota['nama'] . ' Sudah melakukan klaim</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/klaimSelesai/' . $id_anggota . ' ');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>' . $anggota['nama'] . ' Belum melakukan klaim</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/hitungKlaim/' . $id_anggota . ' ');
+        }
+    }
+
+    public function klaimSelesai($id_anggota)
+    {
+        $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
+        $klaim = $this->db->get_where('klaim_asuransi', ['id_anggota' => $id_anggota])->result_array();
+        $data = [
+            'judul'     => "Halaman Admin | Detail Klaim",
+            'anggota'   => $anggota,
+            'klaim'     => $klaim
+        ];
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/detail_klaim');
+        $this->load->view('templates/footer');
+    }
+
+    public function hitungKlaim($id_anggota)
+    {
+        $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
+        $klaim = $this->db->get_where('klaim_asuransi', ['id_anggota' => $id_anggota])->result_array();
+        $data = [
+            'judul'     => "Halaman Admin | hitung Klaim",
+            'anggota'   => $anggota,
+            'klaim'     => $klaim
+        ];
+
+        $this->form_validation->set_rules('tanggal_klaim', 'Tanggal Klaim', 'required');
+        $this->form_validation->set_rules('usia', 'Usia', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/hitung_klaim');
+            $this->load->view('templates/footer');
+        } else {
+            $tanggal_klaim = $this->input->post('tanggal_klaim');
+            $usia = $this->input->post('usia');
+
+            $data = [
+                'id_anggota'    => $id_anggota,
+                'tanggal' => $tanggal_klaim,
+                'usia'          => $usia,
+                'status'        => 1
+            ];
+
+            $this->db->insert('klaim_asuransi', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>' . $anggota['nama'] . ' sedang menunggu konfirmasi</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/klaimSelesai/' . $id_anggota . ' ');
+        }
+    }
 }

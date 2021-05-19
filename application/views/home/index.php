@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
                     <p>
-                        ASURANSIKU akan senantiasa berusaha untuk memberikan layanan terbaik kepada para nasabah. ASURANSIKU berfokus pada 3 layanan asuransi jiwa, yaitu asuransi perlindungan (protection), asuransi plus tabungan (saving) dan asuransi kesehatan (health) melalui jalur telemarketing, bancassurance, corporate solution dan credit life. Kami berkomitmen untuk membangun produk asuransi yang inovatif sesuai dengan kebutuhan masyarakat.
+                        ASURANSIKU akan senantiasa berusaha untuk memberikan layanan terbaik kepada para nasabah. ASURANSIKU berfokus pada 1 layanan yaitu asuransi pendidikan, Kami berkomitmen untuk membangun produk asuransi yang inovatif sesuai dengan kebutuhan masyarakat.
                     </p>
                 </div>
             </div>
@@ -180,13 +180,13 @@
                     <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                         <h4 class="title"><a href="">MISI</a></h4>
                         <p class="description">
-                            <ol>
-                                <li>Membangun institusi keuangan yang kokoh, profesional dan beretika, dengan menjalin kerjasama dengan para pemegang kepentingan (stakeholder).</li>
-                                <li>Secara berkesinambungan memberikan nilai tambah kepada nasabah demi meningkatkan loyalitas dan memberikan pesan positif kepada setiap keluarga di Indonesia.</li>
-                                <li>Memberikan nilai tambah yang optimal kepada para pemegang kepentingan (stakeholder).</li>
-                                <li>Menjadi institusi yang bertanggungjawab dan peduli pada masyarakat.</li>
+                        <ol>
+                            <li>Membangun institusi keuangan yang kokoh, profesional dan beretika, dengan menjalin kerjasama dengan para pemegang kepentingan (stakeholder).</li>
+                            <li>Secara berkesinambungan memberikan nilai tambah kepada nasabah demi meningkatkan loyalitas dan memberikan pesan positif kepada setiap keluarga di Indonesia.</li>
+                            <li>Memberikan nilai tambah yang optimal kepada para pemegang kepentingan (stakeholder).</li>
+                            <li>Menjadi institusi yang bertanggungjawab dan peduli pada masyarakat.</li>
 
-                            </ol>
+                        </ol>
                         </p>
                     </div>
                 </div>
@@ -213,11 +213,11 @@
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
                                 <img src="<?= base_url('assets/vesperr/'); ?>assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
+                                <h3>David Abdul Aziz</h3>
+                                <h4>Wira Swasta</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                                    Pelayanan sangat memuaskan dan sangat mudah, sangat bermanfaat bagi orang tua yang mementingkan pendidikan untuk anak-anaknya
                                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                 </p>
                             </div>
@@ -228,11 +228,11 @@
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
                                 <img src="<?= base_url('assets/vesperr/'); ?>assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
+                                <h3>Mega Kusmayati</h3>
+                                <h4>Dosen</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                                    Masa depan untuk pendidikan anak-anak sangat penting dan asuransiku memberikan layanan terbaik untuk masa depan pendidikan anak kita
                                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                 </p>
                             </div>
@@ -243,18 +243,18 @@
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
                                 <img src="<?= base_url('assets/vesperr/'); ?>assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
+                                <h3>Dea Hasanah</h3>
+                                <h4>Pembisnis</h4>
                                 <p>
                                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                                    Pendidikan buat anak-anak harus diutamakan, karena saya tidak bisa mengatur keuangan untuk pendidikan anak-anak, jadi saya mempercayakan asuransiku untuk mengelola data untuk masa depan pendidikan anak-anak
                                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                 </p>
                             </div>
                         </div>
                     </div><!-- End testimonial item -->
 
-                    <div class="swiper-slide">
+                    <!-- <div class="swiper-slide">
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
                                 <img src="<?= base_url('assets/vesperr/'); ?>assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
@@ -267,9 +267,9 @@
                                 </p>
                             </div>
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div> -->
 
-                    <div class="swiper-slide">
+                    <!-- <div class="swiper-slide">
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
                                 <img src="<?= base_url('assets/vesperr/'); ?>assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
@@ -282,7 +282,7 @@
                                 </p>
                             </div>
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div> -->
 
                 </div>
                 <div class="swiper-pagination"></div>
@@ -292,7 +292,7 @@
     </section><!-- End Testimonials Section -->
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    <!-- <section id="team" class="team section-bg">
         <div class="container">
 
             <div class="section-title" data-aos="fade-up">
@@ -377,7 +377,7 @@
             </div>
 
         </div>
-    </section><!-- End Team Section -->
+    </section> -->
 
     <!-- ======= F.A.Q Section ======= -->
     <!-- <section id="faq" class="faq">
