@@ -28,4 +28,16 @@ class Home extends CI_Controller
         $this->load->view('home/pendidikan');
         $this->load->view('template/footer');
     }
+
+    public function pendaftaran()
+    {
+        $data = [
+            'judul' => "ASURANSIKU | Pendaftaran"
+        ];
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/navbar');
+        $this->load->view('home/pendaftaran');
+        $this->load->view('template/footer');
+    }
 }

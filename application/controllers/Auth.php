@@ -5,6 +5,11 @@ class Auth extends CI_Controller
 {
     public function index()
     {
+        if ($this->session->userdata('email')) {
+            redirect('Admin');
+        }
+
+
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
             'required' => 'Kolom ini wajib diisi',
             'valid_email' => 'Email tidak valid'
@@ -39,7 +44,7 @@ class Auth extends CI_Controller
                     ];
                     $this->session->set_userdata($data);
                     $this->session->set_flashdata('message', '<h3>Selamat Datang dihalaman Pengajuan</h3>');
-                    redirect('Home/index');
+                    redirect('Admin');
                 } else {
                     $this->session->set_flashdata('auth_user', '<h3 style="color: red;" >Password Salah</h3>');
                     redirect('Auth');
