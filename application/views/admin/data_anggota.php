@@ -29,7 +29,7 @@
                                 <?php foreach ($anggota as $value) : ?>
                                     <tr>
                                         <td><?= $value['ktp']; ?></td>
-                                        <td><?= $value['nama']; ?></td>
+                                        <td> <a href="<?= base_url('Admin/detailPeserta/') . $value['id_anggota']; ?>"> <?= $value['nama']; ?></a></td>
                                         <td><?= $value['umur']; ?></td>
                                         <td><?= $value['alamat']; ?></td>
                                         <td>
@@ -38,6 +38,7 @@
                                                     Aksi
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="<?= base_url('Admin/tambahPeserta/') . $value['id_anggota']; ?>">Tambah Peserta</a>
                                                     <a class="dropdown-item" href="<?= base_url('Admin/editAnggota/') . $value['id_anggota']; ?>">Edit</a>
                                                     <a class="dropdown-item" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" href="<?= base_url('Admin/hapusAnggota/') .  $value['id_anggota']; ?> ">Hapus</a>
                                                 </div>

@@ -22,9 +22,14 @@
                         <?= form_error('tanggal_bayar', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Jumla Bayar</label>
-                        <input type="number" class="form-control" name="jumlah_bayar" id="jumlah_bayar" placeholder="Jumlah Bayar" value="<?= set_value('nama') ?>" required>
+                        <label for="nama" class="form-label">Jumlah Bayar</label>
+                        <input type="number" class="form-control" name="jumlah_bayar" id="jumlah_bayar" placeholder="Jumlah Bayar" value="<?= set_value('jumlah_bayar') ?>" required>
                         <?= form_error('jumlah_bayar', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+                    <div class="mb-3">
+                        <label for="biaya_admin" class="form-label">Biaya Admin</label>
+                        <input type="number" class="form-control" name="biaya_admin" id="biaya_admin" placeholder="Biaya Admin" value="<?= set_value('biaya_admin') ?>" required>
+                        <?= form_error('biaya_admin', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
 
                     <button type="submit" name="submit" class="btn btn-primary">Tambah Premi</button>

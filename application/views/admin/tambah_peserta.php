@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Tambah Data Anggota</h1>
+        <h1 class="h3 mb-0 text-gray-800">Tambah Peserta Asuransi</h1>
     </div>
 
     <?=
@@ -13,13 +13,13 @@
             <div class="card shadow p-3">
                 <form action="" method="POST">
                     <div class="mb-3">
-                        <label for="ktp" class="form-label">Nomor KTP</label>
-                        <input type="number" name="ktp" class="form-control" id="ktp" placeholder="No KTP" value="<?= set_value('ktp') ?>">
-                        <?= form_error('ktp', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <label for="nik" class="form-label">NIK</label>
+                        <input type="number" name="nik" class="form-control" id="nik" placeholder="NIK" value="<?= set_value('nik') ?>">
+                        <?= form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama Nasabah</label>
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Nasabah" value="<?= set_value('nama') ?>">
+                        <label for="nama" class="form-label">Nama Peserta</label>
+                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Peserta" value="<?= set_value('nama') ?>">
                         <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class=" mb-3">
@@ -33,7 +33,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="umur" class="form-label">Umur</label>
-                        <input type="number" class="form-control" name="umur" id="umur" placeholder="Usia harus 20 Tahun s/d 65 Tahun" value="<?= set_value('umur') ?>">
+                        <input type="number" class="form-control" name="umur" id="umur" placeholder="Usia maksimal 15 tahun" value="<?= set_value('umur') ?>">
                         <?= form_error('umur', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="mb-3">
@@ -41,33 +41,32 @@
                         <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="" value="<?= set_value('tanggal_lahir') ?>">
                         <?= form_error('tanggal_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
-                    <div class="mb-3">
-                        <label for="telepon" class="form-label">Telepon</label>
-                        <input type="number" class="form-control" name="telepon" id="telepon" placeholder="Telepon" value="<?= set_value('telepon') ?>">
-                        <?= form_error('telepon', '<small class="text-danger pl-3">', '</small>'); ?>
-                    </div>
-                    <div class="mb-3">
-                        <label for="alamat" class="form-label">Alamat</label>
-                        <textarea class="form-control" name="alamat" id="alamat" rows="3"><?= set_value('alamat') ?></textarea>
-                        <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
-                    </div>
                     <div class=" mb-3">
                         <label for="pendidikan" class="form-label">pendidikan</label>
                         <select class="form-control" name="pendidikan" id="pendidikan" required>
                             <option>Pilih</option>
+                            <option value="Belum Sokolah">Belum Sokolah</option>
+                            <option value="TK">TK</option>
                             <option value="SD">SD</option>
                             <option value="SMP">SMP</option>
                             <option value="SMA">SMA</option>
-                            <option value="D1">D1</option>
-                            <option value="D2">D2</option>
-                            <option value="D3">D3</option>
-                            <option value="S1">S1</option>
-                            <option value="S2">S2</option>
                         </select>
                         <?= form_error('pendidikan', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
+                    <div class=" mb-3">
+                        <label for="status_hubungan" class="form-label">Status Hubungan</label>
+                        <select class="form-control" name="status_hubungan" id="status_hubungan" required>
+                            <option>Pilih</option>
+                            <option value="Anak Kandung">Anak Kandung</option>
+                            <option value="Adik Kandung ">Adik Kandung </option>
+                            <option value="Anak Tiri">Anak Tiri</option>
+                            <option value="Adik Tiri">Adik Tiri</option>
+                            <option value="Sodara">Sodara</option>
+                        </select>
+                        <?= form_error('status_hubungan', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
 
-                    <button type="submit" name="submit" class="btn btn-primary">Tambah Anggota</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Tambah Peserta</button>
                 </form>
             </div>
         </div>

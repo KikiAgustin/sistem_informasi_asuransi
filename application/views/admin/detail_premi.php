@@ -18,6 +18,7 @@
                                 <tr>
                                     <th>Tanggal Pembayaran</th>
                                     <th>Jumlah Bayar</th>
+                                    <th>Biaya Admin</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -25,6 +26,7 @@
                                     <tr>
                                         <td><?= date('d-m-Y', strtotime($value['tanggal_bayar'])); ?></td>
                                         <td><?= number_format($value['jumlah_bayar']); ?></td>
+                                        <td><?= number_format($value['biaya_admin']); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

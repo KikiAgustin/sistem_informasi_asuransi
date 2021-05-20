@@ -32,7 +32,7 @@ class Admin extends CI_Controller
 
     public function dataAnggota()
     {
-        $anggota = $this->db->get('data_anggota')->result_array();
+        $anggota = $this->db->get_where('data_anggota', ['polis' => 1])->result_array();
         $data = [
             'judul'     => "Halaman Admin | Data Anggota",
             'anggota'   => $anggota
@@ -53,8 +53,12 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('ktp', 'KTP', 'min_length[16]|required|is_unique[data_anggota.ktp]');
         $this->form_validation->set_rules('nama', 'Nama Nasabah', 'required');
+        $this->form_validation->set_rules('jenis_kelamin', 'jenis kelamin', 'required');
         $this->form_validation->set_rules('umur', 'Umur', 'required');
+        $this->form_validation->set_rules('tanggal_lahir', 'tanggal lahir', 'required');
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('pendidikan', 'pendidikan', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -63,16 +67,43 @@ class Admin extends CI_Controller
             $this->load->view('admin/tambah_anggota');
             $this->load->view('templates/footer');
         } else {
-            $ktp = $this->input->post('ktp');
-            $nama = $this->input->post('nama');
-            $umur = $this->input->post('umur');
-            $alamat = $this->input->post('alamat');
+            $ktp            = $this->input->post('ktp');
+            $nama           = $this->input->post('nama');
+            $jenis_kelamin  = $this->input->post('jenis_kelamin');
+            $umur           = $this->input->post('umur');
+            $tanggal_lahir  = $this->input->post('tanggal_lahir');
+            $telepon        = $this->input->post('telepon');
+            $alamat         = $this->input->post('alamat');
+            $pendidikan     = $this->input->post('pendidikan');
+
+            if ($umur < 20) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>usia Minimal 20 Tahun</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                redirect('Admin/tambahAnggota');
+            } else if ($umur > 65) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>usia Maksimal 65 Tahun</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                redirect('Admin/tambahAnggota');
+            }
 
             $data = [
-                'ktp'       => $ktp,
-                'nama'      => $nama,
-                'umur'      => $umur,
-                'alamat'    => $alamat
+                'ktp'               => $ktp,
+                'nama'              => $nama,
+                'jenis_kelamin'     => $jenis_kelamin,
+                'umur'              => $umur,
+                'tanggal_lahir'     => $tanggal_lahir,
+                'telepon'           => $telepon,
+                'alamat'            => $alamat,
+                'pendidikan'        => $pendidikan,
+                'polis'             => 1
             ];
 
             $this->db->insert('data_anggota', $data);
@@ -84,6 +115,86 @@ class Admin extends CI_Controller
           </div>');
             redirect('Admin/dataAnggota');
         }
+    }
+
+    public function tambahPeserta($id_anggota)
+    {
+
+        $data = [
+            'judul'  => "Halaman Admin | Tambah Peserta"
+        ];
+
+        $this->form_validation->set_rules('nik', 'nik', 'min_length[16]|required|is_unique[data_anggota.ktp]');
+        $this->form_validation->set_rules('nama', 'Nama Peserta', 'required');
+        $this->form_validation->set_rules('jenis_kelamin', 'jenis kelamin', 'required');
+        $this->form_validation->set_rules('umur', 'Umur', 'required');
+        $this->form_validation->set_rules('tanggal_lahir', 'tanggal lahir', 'required');
+        $this->form_validation->set_rules('pendidikan', 'pendidikan', 'required');
+        $this->form_validation->set_rules('status_hubungan', 'status_hubungan', 'required');
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/tambah_peserta');
+            $this->load->view('templates/footer');
+        } else {
+            $nik                = $this->input->post('nik');
+            $nama               = $this->input->post('nama');
+            $jenis_kelamin      = $this->input->post('jenis_kelamin');
+            $umur               = $this->input->post('umur');
+            $tanggal_lahir      = $this->input->post('tanggal_lahir');
+            $pendidikan         = $this->input->post('pendidikan');
+            $status_hubungan    = $this->input->post('status_hubungan');
+
+            if ($umur > 15) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>usia Maksimal 15 tahun</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>');
+                redirect('Admin/tambahPeserta');
+            }
+
+            $data = [
+                'id_polis'          => $id_anggota,
+                'ktp'               => $nik,
+                'nama'              => $nama,
+                'umur'              => $umur,
+                'jenis_kelamin'     => $jenis_kelamin,
+                'tanggal_lahir'     => $tanggal_lahir,
+                'pendidikan'        => $pendidikan,
+                'status_hubungan'   => $status_hubungan
+            ];
+
+            $this->db->insert('data_anggota', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Peserta asuransi berhasil ditambah</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+            redirect('Admin/dataAnggota');
+        }
+    }
+
+    public function detailPeserta($id_anggota)
+    {
+        $polis = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
+        $anggota = $this->db->get_where('data_anggota', ['id_polis' => $id_anggota])->result_array();
+        $data = [
+            'judul'     => "Halaman Admin | Data Anggota",
+            'polis'     => $polis,
+            'anggota'   => $anggota
+        ];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/detail_peserta');
+        $this->load->view('templates/footer');
     }
 
     public function hapusAnggota($id_anggota)
@@ -168,6 +279,7 @@ class Admin extends CI_Controller
         ];
 
         $this->form_validation->set_rules('jumlah_bayar', 'Jumlah Bayar', 'required');
+        $this->form_validation->set_rules('biaya_admin', 'Biaya Admin', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -179,10 +291,19 @@ class Admin extends CI_Controller
             $id_anggota = $this->input->post('id_anggota');
             $tanggal_bayar = $this->input->post('tanggal_bayar');
             $jumlah_bayar = $this->input->post('jumlah_bayar');
+            $biaya_admin = $this->input->post('biaya_admin');
 
             if ($jumlah_bayar < 500000) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>Pembayaran Minimal Rp. 500.000</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                redirect('Admin/bayarPremi/' . $id_anggota . '');
+            } else if ($biaya_admin < 37500) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Biaya Administrasi Minimal Rp. 37.500</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -194,6 +315,7 @@ class Admin extends CI_Controller
                 'id_anggota'        => $id_anggota,
                 'tanggal_bayar'     => $tanggal_bayar,
                 'jumlah_bayar'      => $jumlah_bayar,
+                'biaya_admin'       => $biaya_admin,
                 'jenis'             => "Pendidikan"
             ];
 

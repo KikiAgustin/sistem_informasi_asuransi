@@ -10,9 +10,9 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <!-- <li><a class="nav-link scrollto" href="#">Produk</a></li> -->
-                <!-- <li><a class="nav-link scrollto" href="#">Pendidikan</a></li> -->
-                <!-- <li><a class="nav-link scrollto " href="#contact">Kontak</a></li> -->
-                <!-- <li><a class="getstarted scrollto">Daftar Sekarang</a></li> -->
+                <li><a class="nav-link scrollto" href="<?= base_url('Home/pendidikan'); ?>">Pendidikan</a></li>
+                <li><a class="nav-link scrollto ">Klaim</a></li>
+                <li><a href="<?= base_url('Home/pendaftaran'); ?>" class="getstarted scrollto">Pendaftaran</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
