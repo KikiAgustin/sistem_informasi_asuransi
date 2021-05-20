@@ -66,7 +66,7 @@
             <div class="row content">
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
                     <p>
-                        ASURANSIKU adalah satu-satunya perusahaan yang memberikan layanan asuransi jiwa kepada seluruh rakyak indonesia
+                        ASURANSIKU adalah satu-satunya perusahaan yang memberikan layanan asuransi pendidikan kepada seluruh rakyak indonesia
                     </p>
                     <!-- <ul>
                         <li><i class="ri-check-double-line"></i> Asuransi Perlindungan (protection)</li>
@@ -180,13 +180,13 @@
                     <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                         <h4 class="title"><a href="">MISI</a></h4>
                         <p class="description">
-                        <ol>
-                            <li>Membangun institusi keuangan yang kokoh, profesional dan beretika, dengan menjalin kerjasama dengan para pemegang kepentingan (stakeholder).</li>
-                            <li>Secara berkesinambungan memberikan nilai tambah kepada nasabah demi meningkatkan loyalitas dan memberikan pesan positif kepada setiap keluarga di Indonesia.</li>
-                            <li>Memberikan nilai tambah yang optimal kepada para pemegang kepentingan (stakeholder).</li>
-                            <li>Menjadi institusi yang bertanggungjawab dan peduli pada masyarakat.</li>
+                            <ol>
+                                <li>Membangun institusi keuangan yang kokoh, profesional dan beretika, dengan menjalin kerjasama dengan para pemegang kepentingan (stakeholder).</li>
+                                <li>Secara berkesinambungan memberikan nilai tambah kepada nasabah demi meningkatkan loyalitas dan memberikan pesan positif kepada setiap keluarga di Indonesia.</li>
+                                <li>Memberikan nilai tambah yang optimal kepada para pemegang kepentingan (stakeholder).</li>
+                                <li>Menjadi institusi yang bertanggungjawab dan peduli pada masyarakat.</li>
 
-                        </ol>
+                            </ol>
                         </p>
                     </div>
                 </div>

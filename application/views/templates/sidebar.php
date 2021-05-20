@@ -38,6 +38,11 @@
             <span>Premi</span></a>
     </li>
     <li class="nav-item active">
+        <a class="nav-link" href="<?= base_url('Admin/premi') ?>">
+            <i class="fas fa-fw fa-money-check-alt"></i>
+            <span>Penarikan</span></a>
+    </li>
+    <li class="nav-item active">
         <a class="nav-link" href="<?= base_url('Admin/klaim') ?>">
             <i class="fas fa-fw fa-money-bill"></i>
             <span>Klaim</span></a>

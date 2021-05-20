@@ -17,7 +17,7 @@
                             <thead>
                                 <tr>
                                     <th>No KTP </th>
-                                    <th>Nama Nasabah</th>
+                                    <th>Pemegang Polis</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -25,9 +25,9 @@
                                 <?php foreach ($anggota as $value) : ?>
                                     <tr>
                                         <td><?= $value['ktp']; ?></td>
-                                        <td><a href="<?= base_url('Admin/detailPremi/') . $value['id_anggota']; ?>"><?= $value['nama']; ?></a></td>
+                                        <td><a href="<?= base_url('Admin/klaimSelesai/') . $value['id_anggota']; ?>"><?= $value['nama']; ?></a></td>
                                         <td>
-                                            <a href="<?= base_url('Admin/detailKlaim/') . $value['id_anggota']; ?>" class="btn btn-primary">Pilih</a>
+                                            <a href="<?= base_url('Admin/klaimSelesai/') . $value['id_anggota']; ?>" class="btn btn-primary">Pilih</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

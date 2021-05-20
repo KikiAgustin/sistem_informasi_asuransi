@@ -9,30 +9,35 @@
         <div class="col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Klaim Asuransi Untuk <?= $anggota['nama']; ?></h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Pilih Peserta Asuransi</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Tanggal Klaim</th>
+                                    <th>Nama Peserta</th>
+                                    <th>jenis Kelamin</th>
                                     <th>Usia</th>
-                                    <th>Status</th>
+                                    <th>Hubungan</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($klaim as $value) : ?>
+                                <?php foreach ($anggota as $value) : ?>
+
+                                    <?php
+                                    $tanggal = new DateTime($value['tanggal_lahir']);
+                                    $today = new DateTime('today');
+                                    $tahun = $today->diff($tanggal)->y;
+                                    ?>
                                     <tr>
-                                        <td><?= date('d-m-Y', strtotime($value['tanggal'])); ?></td>
-                                        <td><?= $value['usia']; ?></td>
-                                        <?php if ($value['status'] == 1) : ?>
-                                            <td><button class="btn btn-warning">Menunggu</button></td>
-                                        <?php elseif ($value['status'] == 2) : ?>
-                                            <td><button class="btn btn-success">Selesai</button></td>
-                                        <?php elseif ($value['status'] == 3) : ?>
-                                            <td><button class="btn btn-danger">Ditolak</button></td>
-                                        <?php endif; ?>
+                                        <td><?= $value['nama']; ?></td>
+                                        <td><?= $value['jenis_kelamin']; ?></td>
+                                        <td><?= $tahun; ?> Tahun</td>
+                                        <td><?= $value['status_hubungan']; ?></td>
+                                        <td><a href="<?= base_url('Admin/hitungKlaim/') . $value['id_anggota'] . '/' . $value['id_polis']; ?>" class="btn btn-primary" href="">Pilih</a></td>
+
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

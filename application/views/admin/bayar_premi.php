@@ -12,9 +12,19 @@
                 <form action="" method="POST">
                     <input type="hidden" name="id_anggota" value="<?= $anggota['id_anggota']; ?>">
                     <div class="mb-3">
-                        <label for="ktp" class="form-label">Nama Nasabah</label>
+                        <label for="ktp" class="form-label">Pemegang Polis</label>
                         <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Nasabah" value="<?= $anggota['nama']; ?>" readonly>
                         <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+                    <div class=" mb-3">
+                        <label for="nama" class="form-label">Peserta</label>
+                        <select class="form-control" name="peserta" id="peserta" required>
+                            <option>Pilih</option>
+                            <?php foreach ($peserta as $value) : ?>
+                                <option value="<?= $value['id_anggota']; ?>"><?= $value['nama']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <?= form_error('peserta', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Tanggal pembayaran</label>

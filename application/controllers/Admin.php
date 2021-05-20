@@ -257,7 +257,7 @@ class Admin extends CI_Controller
     // Polis
     public function premi()
     {
-        $anggota = $this->db->get('data_anggota')->result_array();
+        $anggota = $this->db->get_where('data_anggota', ['polis' => 1])->result_array();
         $data = [
             'judul'     => "Halaman Admin | Premi",
             'anggota'   => $anggota
@@ -273,9 +273,11 @@ class Admin extends CI_Controller
     public function bayarPremi($id_anggota)
     {
         $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
+        $peserta = $this->db->get_where('data_anggota', ['id_polis' => $id_anggota])->result_array();
         $data = [
             'judul'     => "Halaman Admin | Bayar Premi",
-            'anggota'   => $anggota
+            'anggota'   => $anggota,
+            'peserta'   => $peserta
         ];
 
         $this->form_validation->set_rules('jumlah_bayar', 'Jumlah Bayar', 'required');
@@ -292,6 +294,7 @@ class Admin extends CI_Controller
             $tanggal_bayar = $this->input->post('tanggal_bayar');
             $jumlah_bayar = $this->input->post('jumlah_bayar');
             $biaya_admin = $this->input->post('biaya_admin');
+            $peserta = $this->input->post('peserta');
 
             if ($jumlah_bayar < 500000) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -312,7 +315,8 @@ class Admin extends CI_Controller
             }
 
             $data = [
-                'id_anggota'        => $id_anggota,
+                'id_anggota'        => $peserta,
+                'id_polis'          => $id_anggota,
                 'tanggal_bayar'     => $tanggal_bayar,
                 'jumlah_bayar'      => $jumlah_bayar,
                 'biaya_admin'       => $biaya_admin,
@@ -334,7 +338,7 @@ class Admin extends CI_Controller
     public function detailPremi($id_anggota)
     {
         $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
-        $pembayaran = $this->db->get_where('bayar_premi', ['id_anggota' => $id_anggota])->result_array();
+        $pembayaran = $this->db->get_where('bayar_premi', ['id_polis' => $id_anggota])->result_array();
 
         $data = [
             'judul'     => "Halaman Admin | Detail premi",
@@ -352,7 +356,7 @@ class Admin extends CI_Controller
 
     public function klaim()
     {
-        $anggota = $this->db->get('data_anggota')->result_array();
+        $anggota = $this->db->get_where('data_anggota', ['polis' => 1])->result_array();
         $data = [
             'judul'     => "Halaman Admin | Klaim",
             'anggota'   => $anggota
@@ -392,7 +396,7 @@ class Admin extends CI_Controller
 
     public function klaimSelesai($id_anggota)
     {
-        $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
+        $anggota = $this->db->get_where('data_anggota', ['id_polis' => $id_anggota])->result_array();
         $klaim = $this->db->get_where('klaim_asuransi', ['id_anggota' => $id_anggota])->result_array();
         $data = [
             'judul'     => "Halaman Admin | Detail Klaim",
@@ -406,10 +410,25 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function hitungKlaim($id_anggota)
+    public function hitungKlaim($id_anggota, $id_polis)
     {
         $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
         $klaim = $this->db->get_where('klaim_asuransi', ['id_anggota' => $id_anggota])->result_array();
+
+        $tanggal = new DateTime($anggota['tanggal_lahir']);
+        $today = new DateTime('today');
+        $tahun = $today->diff($tanggal)->y;
+
+        if ($tahun < 18) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Usia Peserta tidak boleh kurang dari 18 tahun</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/klaimSelesai/' . $id_polis . '');
+        }
+
         $data = [
             'judul'     => "Halaman Admin | hitung Klaim",
             'anggota'   => $anggota,

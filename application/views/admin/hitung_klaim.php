@@ -12,8 +12,8 @@
                 <form action="" method="POST">
                     <input type="hidden" name="id_anggota" value="<?= $anggota['id_anggota']; ?>">
                     <div class="mb-3">
-                        <label for="ktp" class="form-label">Nama Nasabah</label>
-                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Nasabah" value="<?= $anggota['nama']; ?>" readonly>
+                        <label for="ktp" class="form-label">Nama peserta</label>
+                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Peserta" value="<?= $anggota['nama']; ?>" readonly>
                         <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="mb-3">
@@ -21,9 +21,18 @@
                         <input type="date" class="form-control" name="tanggal_klaim" id="tanggal_klaim" placeholder="Tanggl Pembayaran" value="<?= set_value('tanggal_klaim') ?>" required>
                         <?= form_error('tanggal_klaim', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
+
+                    <?php
+
+                    $tanggal = new DateTime($anggota['tanggal_lahir']);
+                    $today = new DateTime('today');
+                    $tahun = $today->diff($tanggal)->y;
+
+                    ?>
+
                     <div class="mb-3">
                         <label for="nama" class="form-label">Usia</label>
-                        <input type="number" class="form-control" name="usia" id="usia" placeholder="Usia" value="<?= set_value('usia') ?>" required>
+                        <input type="number" class="form-control" name="usia" id="usia" placeholder="Usia" value="<?= $tahun; ?>" required>
                         <?= form_error('usia', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
 

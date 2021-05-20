@@ -16,6 +16,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>Nama peserta</th>
                                     <th>Tanggal Pembayaran</th>
                                     <th>Jumlah Bayar</th>
                                     <th>Biaya Admin</th>
@@ -23,7 +24,12 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($pembayaran as $value) : ?>
+                                    <?php
+                                    $namaPeserta = $this->db->get_where('data_anggota', ['id_anggota' => $value['id_anggota']])->row_array();
+
+                                    ?>
                                     <tr>
+                                        <td><?= $namaPeserta['nama']; ?></td>
                                         <td><?= date('d-m-Y', strtotime($value['tanggal_bayar'])); ?></td>
                                         <td><?= number_format($value['jumlah_bayar']); ?></td>
                                         <td><?= number_format($value['biaya_admin']); ?></td>
