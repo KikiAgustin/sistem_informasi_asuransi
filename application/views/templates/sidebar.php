@@ -38,7 +38,7 @@
             <span>Premi</span></a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('Admin/premi') ?>">
+        <a class="nav-link" href="<?= base_url('Admin/penarikan') ?>">
             <i class="fas fa-fw fa-money-check-alt"></i>
             <span>Penarikan</span></a>
     </li>

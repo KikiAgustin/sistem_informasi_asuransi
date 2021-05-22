@@ -45,7 +45,18 @@
                                                 <button class="btn btn-danger">Ditolak</button>
                                             <?php endif; ?>
                                         </td>
-                                        <td>aksi</td>
+
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Aksi
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="<?= base_url('Admin/updateStatusKlaim/') . $value['id_anggota'] . '/2'; ?>">Setujui</a>
+                                                    <a class="dropdown-item" href="<?= base_url('Admin/updateStatusKlaim/') . $value['id_anggota'] . '/3'; ?>">Tolak</a>
+                                                </div>
+                                            </div>
+                                        </td>
 
                                     </tr>
                                 <?php endforeach; ?>

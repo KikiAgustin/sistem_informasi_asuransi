@@ -170,6 +170,7 @@ class Admin extends CI_Controller
             ];
 
             $this->db->insert('data_anggota', $data);
+
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Peserta asuransi berhasil ditambah</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -325,6 +326,35 @@ class Admin extends CI_Controller
             ];
 
             $this->db->insert('bayar_premi', $data);
+
+            $cekBayar = $this->db->get_where('jumlah_premi', ['id_anggota' => $id_anggota])->row_array();
+            $hasilJumlah = $cekBayar['jumlah'] + $jumlah_bayar;
+
+            if ($cekBayar) {
+
+
+                $this->db->set('jumlah', $hasilJumlah);
+                $this->db->where('id_anggota', $id_anggota);
+                $this->db->update('jumlah_premi');
+            } else {
+
+                $data1 = [
+                    'id_anggota' => $id_anggota,
+                    'jumlah'     => $jumlah_bayar
+                ];
+
+                $this->db->insert('jumlah_premi', $data1);
+            }
+
+            $data3 = [
+                'id_anggota'        => $id_anggota,
+                'tanggal'           => $tanggal_bayar,
+                'jumlah_transaksi'  => $jumlah_bayar,
+                'status'            => "pembayaran Premi",
+                'saldo'             => $hasilJumlah
+            ];
+            $this->db->insert('riwayat_transaksi', $data3);
+
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Premi berhasi dibayarkan</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -425,6 +455,35 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function updateStatusKlaim($id_anggota, $status)
+    {
+
+        $tanggal = date('Y-m-d');
+
+        $this->db->set('status', $status);
+        $this->db->set('tanggal_status', $tanggal);
+        $this->db->where('id_anggota', $id_anggota);
+        $this->db->update('klaim_asuransi');
+
+        if ($status == 2) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Klaim berhasil diterima</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/klaimSelesaiStatus');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Klaim ditolak</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/klaimSelesaiStatus');
+        }
+    }
+
     public function hitungKlaim($id_anggota, $id_polis)
     {
         $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
@@ -487,5 +546,36 @@ class Admin extends CI_Controller
           </div>');
             redirect('Admin/klaimSelesai/' . $id_anggota . ' ');
         }
+    }
+
+
+    // Penarikan
+    public function penarikan()
+    {
+        $anggota = $this->db->get_where('data_anggota', ['polis' => 0])->result_array();
+        $data = [
+            'judul'     => "Halaman Admin | Penarikan Saldo",
+            'anggota'   => $anggota
+        ];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/penarikan');
+        $this->load->view('templates/footer');
+    }
+
+
+    public function riwayatTransaksi($id_anggota)
+    {
+        $data = [
+            'judul'     => "Halaman Admin | Penarikan Saldo"
+        ];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/riwayat_transaksi');
+        $this->load->view('templates/footer');
     }
 }
