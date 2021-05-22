@@ -17,7 +17,7 @@
                             <thead>
                                 <tr>
                                     <th>No KTP </th>
-                                    <th>Nama Nasabah</th>
+                                    <th>Pemegang Polis</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

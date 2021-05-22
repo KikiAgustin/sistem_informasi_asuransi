@@ -116,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
+            <!-- <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         Accordion Ite
@@ -130,7 +130,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="d-grid gap-2 mt-5">
             <a href="<?= base_url('Home/pendaftaran'); ?>" class="btn btn-primary">Daftar Sekarang</a>

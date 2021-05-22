@@ -25,7 +25,7 @@
                     <div class=" mb-3">
                         <label for="nama" class="form-label">Jenis kelamin</label>
                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" required>
-                            <option>Pilih</option>
+                            <option value="">Pilih</option>
                             <option value="laki-laki">laki-laki</option>
                             <option value="perempuan">perempuan</option>
                         </select>
@@ -54,7 +54,7 @@
                     <div class=" mb-3">
                         <label for="pendidikan" class="form-label">pendidikan</label>
                         <select class="form-control" name="pendidikan" id="pendidikan" required>
-                            <option>Pilih</option>
+                            <option value="">Pilih</option>
                             <option value="SD">SD</option>
                             <option value="SMP">SMP</option>
                             <option value="SMA">SMA</option>

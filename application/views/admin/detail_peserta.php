@@ -64,6 +64,7 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
+                            <a href="<?= base_url('Admin/tambahPeserta/') . $id_anggota; ?>" class="btn btn-primary mb-3">Tambah Peserta</a>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card shadow mb-4">
@@ -99,7 +100,6 @@
                                                                             Aksi
                                                                         </button>
                                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                            <a class="dropdown-item" href="<?= base_url('Admin/tambahPeserta/') . $value['id_anggota']; ?>">Tambah Peserta</a>
                                                                             <a class="dropdown-item" href="<?= base_url('Admin/editAnggota/') . $value['id_anggota']; ?>">Edit</a>
                                                                             <a class="dropdown-item" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" href="<?= base_url('Admin/hapusAnggota/') .  $value['id_anggota']; ?> ">Hapus</a>
                                                                         </div>

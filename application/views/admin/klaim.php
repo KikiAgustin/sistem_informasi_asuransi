@@ -4,6 +4,7 @@
         <h1 class="h3 mb-0 text-gray-800">Klaim Asuransi</h1>
     </div>
     <?= $this->session->flashdata('message'); ?>
+    <a class="btn btn-primary mb-3" href="<?= base_url('Admin/klaimSelesaiStatus'); ?>">Daftar Klaim</a>
 
     <div class="row">
         <div class="col-lg-12">

@@ -25,7 +25,7 @@
                     <div class=" mb-3">
                         <label for="nama" class="form-label">Jenis kelamin</label>
                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" required>
-                            <option>Pilih</option>
+                            <option value="">Pilih</option>
                             <option value="laki-laki">laki-laki</option>
                             <option value="perempuan">perempuan</option>
                         </select>
@@ -44,7 +44,7 @@
                     <div class=" mb-3">
                         <label for="pendidikan" class="form-label">pendidikan</label>
                         <select class="form-control" name="pendidikan" id="pendidikan" required>
-                            <option>Pilih</option>
+                            <option value="">Pilih</option>
                             <option value="Belum Sokolah">Belum Sokolah</option>
                             <option value="TK">TK</option>
                             <option value="SD">SD</option>
@@ -56,7 +56,7 @@
                     <div class=" mb-3">
                         <label for="status_hubungan" class="form-label">Status Hubungan</label>
                         <select class="form-control" name="status_hubungan" id="status_hubungan" required>
-                            <option>Pilih</option>
+                            <option value="">Pilih</option>
                             <option value="Anak Kandung">Anak Kandung</option>
                             <option value="Adik Kandung ">Adik Kandung </option>
                             <option value="Anak Tiri">Anak Tiri</option>

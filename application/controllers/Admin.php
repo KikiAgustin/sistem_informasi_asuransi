@@ -185,9 +185,10 @@ class Admin extends CI_Controller
         $polis = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
         $anggota = $this->db->get_where('data_anggota', ['id_polis' => $id_anggota])->result_array();
         $data = [
-            'judul'     => "Halaman Admin | Data Anggota",
-            'polis'     => $polis,
-            'anggota'   => $anggota
+            'judul'         => "Halaman Admin | Data Anggota",
+            'polis'         => $polis,
+            'anggota'       => $anggota,
+            'id_anggota'    => $id_anggota
         ];
 
         $this->load->view('templates/header', $data);
@@ -397,7 +398,7 @@ class Admin extends CI_Controller
     public function klaimSelesai($id_anggota)
     {
         $anggota = $this->db->get_where('data_anggota', ['id_polis' => $id_anggota])->result_array();
-        $klaim = $this->db->get_where('klaim_asuransi', ['id_anggota' => $id_anggota])->result_array();
+        $klaim = $this->db->get('klaim_asuransi', ['id_anggota' => $id_anggota])->result_array();
         $data = [
             'judul'     => "Halaman Admin | Detail Klaim",
             'anggota'   => $anggota,
@@ -407,6 +408,20 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar');
         $this->load->view('admin/detail_klaim');
+        $this->load->view('templates/footer');
+    }
+
+    public function klaimSelesaiStatus()
+    {
+        $klaim = $this->db->get('klaim_asuransi')->result_array();
+        $data = [
+            'judul'     => "Halaman Admin | Detail Klaim",
+            'klaim'     => $klaim,
+        ];
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/detail_klaim_');
         $this->load->view('templates/footer');
     }
 
@@ -427,6 +442,14 @@ class Admin extends CI_Controller
             </button>
           </div>');
             redirect('Admin/klaimSelesai/' . $id_polis . '');
+        } elseif ($klaim) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Peserta Sudah melakukan klaim</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/klaimSelesaiStatus');
         }
 
         $data = [

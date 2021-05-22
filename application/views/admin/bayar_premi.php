@@ -19,7 +19,7 @@
                     <div class=" mb-3">
                         <label for="nama" class="form-label">Peserta</label>
                         <select class="form-control" name="peserta" id="peserta" required>
-                            <option>Pilih</option>
+                            <option value="">Pilih</option>
                             <?php foreach ($peserta as $value) : ?>
                                 <option value="<?= $value['id_anggota']; ?>"><?= $value['nama']; ?></option>
                             <?php endforeach; ?>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="biaya_admin" class="form-label">Biaya Admin</label>
-                        <input type="number" class="form-control" name="biaya_admin" id="biaya_admin" placeholder="Biaya Admin" value="<?= set_value('biaya_admin') ?>" required>
+                        <input type="number" class="form-control" name="biaya_admin" id="biaya_admin" placeholder="Biaya Admin" value="37500" required>
                         <?= form_error('biaya_admin', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
 
