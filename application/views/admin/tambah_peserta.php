@@ -5,7 +5,7 @@
     </div>
 
     <?=
-    $this->session->flashdata('message');
+        $this->session->flashdata('message');
     ?>
 
     <div class="row">
@@ -30,11 +30,6 @@
                             <option value="perempuan">perempuan</option>
                         </select>
                         <?= form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>'); ?>
-                    </div>
-                    <div class="mb-3">
-                        <label for="umur" class="form-label">Umur</label>
-                        <input type="number" class="form-control" name="umur" id="umur" placeholder="Usia maksimal 15 tahun" value="<?= set_value('umur') ?>">
-                        <?= form_error('umur', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
                     <div class="mb-3">
                         <label for="tanggal_lahir" class="form-label">Tanggal lahir</label>

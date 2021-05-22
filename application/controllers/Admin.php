@@ -54,7 +54,6 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('ktp', 'KTP', 'min_length[16]|required|is_unique[data_anggota.ktp]');
         $this->form_validation->set_rules('nama', 'Nama Nasabah', 'required');
         $this->form_validation->set_rules('jenis_kelamin', 'jenis kelamin', 'required');
-        $this->form_validation->set_rules('umur', 'Umur', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'tanggal lahir', 'required');
         $this->form_validation->set_rules('telepon', 'Telepon', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
@@ -70,11 +69,15 @@ class Admin extends CI_Controller
             $ktp            = $this->input->post('ktp');
             $nama           = $this->input->post('nama');
             $jenis_kelamin  = $this->input->post('jenis_kelamin');
-            $umur           = $this->input->post('umur');
+            // $umur           = $this->input->post('umur');
             $tanggal_lahir  = $this->input->post('tanggal_lahir');
             $telepon        = $this->input->post('telepon');
             $alamat         = $this->input->post('alamat');
             $pendidikan     = $this->input->post('pendidikan');
+
+            $tanggal = new DateTime($tanggal_lahir);
+            $today = new DateTime('today');
+            $umur = $today->diff($tanggal)->y;
 
             if ($umur < 20) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -127,7 +130,6 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nik', 'nik', 'min_length[16]|required|is_unique[data_anggota.ktp]');
         $this->form_validation->set_rules('nama', 'Nama Peserta', 'required');
         $this->form_validation->set_rules('jenis_kelamin', 'jenis kelamin', 'required');
-        $this->form_validation->set_rules('umur', 'Umur', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'tanggal lahir', 'required');
         $this->form_validation->set_rules('pendidikan', 'pendidikan', 'required');
         $this->form_validation->set_rules('status_hubungan', 'status_hubungan', 'required');
@@ -143,10 +145,14 @@ class Admin extends CI_Controller
             $nik                = $this->input->post('nik');
             $nama               = $this->input->post('nama');
             $jenis_kelamin      = $this->input->post('jenis_kelamin');
-            $umur               = $this->input->post('umur');
+            // $umur               = $this->input->post('umur');
             $tanggal_lahir      = $this->input->post('tanggal_lahir');
             $pendidikan         = $this->input->post('pendidikan');
             $status_hubungan    = $this->input->post('status_hubungan');
+
+            $tanggal = new DateTime($tanggal_lahir);
+            $today = new DateTime('today');
+            $umur = $today->diff($tanggal)->y;
 
             if ($umur > 15) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">

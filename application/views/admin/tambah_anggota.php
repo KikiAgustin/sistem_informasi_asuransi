@@ -5,7 +5,7 @@
     </div>
 
     <?=
-    $this->session->flashdata('message');
+        $this->session->flashdata('message');
     ?>
 
     <div class="row">
@@ -31,11 +31,7 @@
                         </select>
                         <?= form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
-                    <div class="mb-3">
-                        <label for="umur" class="form-label">Umur</label>
-                        <input type="number" class="form-control" name="umur" id="umur" placeholder="Usia harus 20 Tahun s/d 65 Tahun" value="<?= set_value('umur') ?>">
-                        <?= form_error('umur', '<small class="text-danger pl-3">', '</small>'); ?>
-                    </div>
+
                     <div class="mb-3">
                         <label for="tanggal_lahir" class="form-label">Tanggal lahir</label>
                         <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="" value="<?= set_value('tanggal_lahir') ?>">
