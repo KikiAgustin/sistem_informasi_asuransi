@@ -161,7 +161,7 @@ class Admin extends CI_Controller
                         <span aria-hidden="true">&times;</span>
                         </button>
                         </div>');
-                redirect('Admin/tambahPeserta');
+                redirect('Admin/tambahPeserta/' . $id_anggota);
             }
 
             $data = [
@@ -340,12 +340,12 @@ class Admin extends CI_Controller
 
 
                 $this->db->set('jumlah', $hasilJumlah);
-                $this->db->where('id_anggota', $id_anggota);
+                $this->db->where('id_anggota', $peserta);
                 $this->db->update('jumlah_premi');
             } else {
 
                 $data1 = [
-                    'id_anggota' => $id_anggota,
+                    'id_anggota' => $peserta,
                     'jumlah'     => $jumlah_bayar
                 ];
 
@@ -353,7 +353,7 @@ class Admin extends CI_Controller
             }
 
             $data3 = [
-                'id_anggota'        => $id_anggota,
+                'id_anggota'        => $peserta,
                 'tanggal'           => $tanggal_bayar,
                 'jumlah_transaksi'  => $jumlah_bayar,
                 'status'            => "pembayaran Premi",
@@ -574,8 +574,13 @@ class Admin extends CI_Controller
 
     public function riwayatTransaksi($id_anggota)
     {
+        $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
+        $transaksi = $this->db->get_where('riwayat_transaksi', ['id_anggota' => $id_anggota])->result_array();
+
         $data = [
-            'judul'     => "Halaman Admin | Penarikan Saldo"
+            'judul'     => "Halaman Admin | Penarikan Saldo",
+            'anggota'   => $anggota,
+            'transaksi' => $transaksi
         ];
 
         $this->load->view('templates/header', $data);
