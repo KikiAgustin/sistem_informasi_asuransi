@@ -27,7 +27,7 @@
                                         <td><?= $value['ktp']; ?></td>
                                         <td><a href="<?= base_url('Admin/riwayatTransaksi/') . $value['id_anggota']; ?>"><?= $value['nama']; ?></a></td>
                                         <td>
-                                            <a href="<?= base_url('Admin/bayarPremi/') . $value['id_anggota']; ?>" class="btn btn-primary">Pilih</a>
+                                            <a href="<?= base_url('Admin/penarikanDana/') . $value['id_anggota']; ?>" class="btn btn-primary">Pilih</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

@@ -333,12 +333,10 @@ class Admin extends CI_Controller
 
             $this->db->insert('bayar_premi', $data);
 
-            $cekBayar = $this->db->get_where('jumlah_premi', ['id_anggota' => $id_anggota])->row_array();
-            $hasilJumlah = $cekBayar['jumlah'] + $jumlah_bayar;
+            $cekBayar = $this->db->get_where('jumlah_premi', ['id_anggota' => $peserta])->row_array();
 
             if ($cekBayar) {
-
-
+                $hasilJumlah = $cekBayar['jumlah'] + $jumlah_bayar;
                 $this->db->set('jumlah', $hasilJumlah);
                 $this->db->where('id_anggota', $peserta);
                 $this->db->update('jumlah_premi');
@@ -352,12 +350,14 @@ class Admin extends CI_Controller
                 $this->db->insert('jumlah_premi', $data1);
             }
 
+            $jumlahHasil = $cekBayar['jumlah'] + $jumlah_bayar;
             $data3 = [
                 'id_anggota'        => $peserta,
                 'tanggal'           => $tanggal_bayar,
                 'jumlah_transaksi'  => $jumlah_bayar,
                 'status'            => "pembayaran Premi",
-                'saldo'             => $hasilJumlah
+                'saldo'             => $jumlahHasil,
+                'status_bayar'      => 1
             ];
             $this->db->insert('riwayat_transaksi', $data3);
 
@@ -588,5 +588,98 @@ class Admin extends CI_Controller
         $this->load->view('templates/topbar');
         $this->load->view('admin/riwayat_transaksi');
         $this->load->view('templates/footer');
+    }
+
+    public function penarikanDana($id_anggota)
+    {
+        $anggota = $this->db->get_where('data_anggota', ['id_anggota' => $id_anggota])->row_array();
+        $peserta = $this->db->get_where('data_anggota', ['id_polis' => $id_anggota])->result_array();
+        $cekDana = $this->db->get_where('jumlah_premi', ['id_anggota' => $id_anggota])->row_array();
+
+        if (!$cekDana) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Peserta ini tidak bisa melakukan penarikan dana</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+            redirect('Admin/penarikan');
+        } elseif ($cekDana['jumlah'] < 4000000) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Dana dari peserta ini belum cukup untuk melakukan penarikan</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            redirect('Admin/penarikan');
+        }
+
+        $data = [
+            'judul'     => "Halaman Admin | Penarikan dana",
+            'anggota'   => $anggota,
+            'peserta'   => $peserta
+        ];
+
+        $this->form_validation->set_rules('jumlah_penarikan', 'Jumlah Penarikan', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/penarikan_dana');
+            $this->load->view('templates/footer');
+        } else {
+            $id_anggota = $this->input->post('id_anggota');
+            $tanggal_penarikan = $this->input->post('tanggal_penarikan');
+            $jumlah_penarikan = $this->input->post('jumlah_penarikan');
+
+            if ($jumlah_penarikan < 100000) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Penarikan Minimal 1.000.000</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                redirect('Admin/penarikanDana/' . $id_anggota . '');
+            }
+
+            $cekBayar = $this->db->get_where('jumlah_premi', ['id_anggota' => $id_anggota])->row_array();
+            $sisaDana = $cekBayar['jumlah'] - $jumlah_penarikan;
+
+            if ($sisaDana < 3000000) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Penarikan dana terlalu besar, saldo yang tersisia minimal harus Rp. 3.000.000</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>');
+                redirect('Admin/penarikanDana/' . $id_anggota . '');
+            } else {
+
+                $hasilJumlah = $cekBayar['jumlah'] - $jumlah_penarikan;
+                $this->db->set('jumlah', $hasilJumlah);
+                $this->db->where('id_anggota', $id_anggota);
+                $this->db->update('jumlah_premi');
+            }
+
+            $jumlahHasil = $cekBayar['jumlah'] - $jumlah_penarikan;
+            $data3 = [
+                'id_anggota'        => $id_anggota,
+                'tanggal'           => $tanggal_penarikan,
+                'jumlah_transaksi'  => $jumlah_penarikan,
+                'status'            => "Penarikan Dana",
+                'saldo'             => $jumlahHasil,
+                'status_bayar'      => 2
+            ];
+            $this->db->insert('riwayat_transaksi', $data3);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Penarikan sebesar ' . number_format($jumlah_penarikan) . ' berhasil</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/penarikan');
+        }
     }
 }

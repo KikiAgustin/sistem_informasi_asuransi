@@ -13,20 +13,25 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card mb-4 py-3 border-left-primary">
-                                <div class="card-body">
-                                    <span>20 Januari 2021</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color: blue;">Uang Masuk : 500.000</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span>Keterangan : Pembayaran Premi</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color: black; font-weight: bold; ">Saldo : 3.000.000</span>
+                        <?php foreach ($transaksi as $value) : ?>
+                            <?php if ($value['status_bayar'] == 1) : ?>
+                                <div class="col-lg-12">
+                                    <div class="card mb-4 py-3 border-left-primary">
+                                        <div class="card-body">
+                                            <span><?= date('d F Y', strtotime($value['tanggal'])); ?></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color: blue;">Uang Masuk : Rp. <?= number_format($value['jumlah_transaksi']); ?></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span>Keterangan : <?= $value['status']; ?> </span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color: black; font-weight: bold; ">Saldo : Rp. <?= number_format($value['saldo']); ?></span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="card mb-4 py-3 border-left-primary">
-                                <div class="card-body">
-                                    <span>31 Januari 2021</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color: red;">Uang Keluar : 500.000</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span>Keterangan : Penarikan Dana</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color: black; font-weight: bold; ">Saldo : 3.000.000</span>
+                            <?php else : ?>
+                                <div class="col-lg-12">
+                                    <div class="card mb-4 py-3 border-left-danger">
+                                        <div class="card-body">
+                                            <span><?= date('d F Y', strtotime($value['tanggal'])); ?></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color: red;">Uang Keluar : Rp. <?= number_format($value['jumlah_transaksi']); ?></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span>Keterangan : <?= $value['status']; ?></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style="color: black; font-weight: bold; ">Saldo : Rp. <?= number_format($value['saldo']); ?></span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
