@@ -682,4 +682,167 @@ class Admin extends CI_Controller
             redirect('Admin/penarikan');
         }
     }
+
+    public function dataUser()
+    {
+        $user = $this->db->get_where('user', ['is_active' => 1])->result_array();
+        $data = [
+            'judul'     => "Halaman Admin | Data User",
+            'user'      => $user
+        ];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/data_user');
+        $this->load->view('templates/footer');
+    }
+
+    public function tambahDataUser()
+    {
+        $data = [
+            'judul'  => "Halaman Admin | Tambah Data User"
+        ];
+
+        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required|trim', [
+            'required' => 'Kolom nama lengkap harus diisi'
+        ]);
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[user.email]', [
+            'required' => 'Kolom email harus diisi',
+            'is_unique' => 'Email ini sudah terdaftar'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password1]', [
+            'required' => 'Kolom ini harus diisi',
+            'min_length' => 'Password minimal 8 karakter',
+            'matches' => 'Isi password harus sama'
+        ]);
+        $this->form_validation->set_rules('password1', 'Konfirmasi Password', 'required|trim|min_length[8]|matches[password]', [
+            'required' => 'Kolom ini harus diisi',
+            'min_length' => 'Password minimal 8 karakter',
+            'matches' => 'Isi password harus sama'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/tambah_user');
+            $this->load->view('templates/footer');
+        } else {
+            $nama_lengkap = htmlspecialchars($_POST['nama_lengkap'], true);
+            $email = htmlspecialchars($_POST['email'], true);
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+            $data = [
+                'name' => $nama_lengkap,
+                'email' => $email,
+                'image' => "default.png",
+                'password' => $password,
+                'date_created' => time(),
+                'is_active' => 1,
+                'role_id' => 2
+            ];
+
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>User berhasil ditambah</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/dataUser');
+        }
+    }
+
+    public function EditUser($id_user)
+    {
+        $user = $this->db->get_where('user', ['id' => $id_user])->row_array();
+        $data = [
+            'judul'  => "Halaman Admin | Edit Data User",
+            'user'   => $user
+        ];
+
+        $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required|trim', [
+            'required' => 'Kolom nama lengkap harus diisi'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/edit_user');
+            $this->load->view('templates/footer');
+        } else {
+            $nama_lengkap = htmlspecialchars($_POST['nama_lengkap'], true);
+
+            $this->db->set('name', $nama_lengkap);
+            $this->db->where('id', $id_user);
+            $this->db->update('user');
+
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>User berhasil di edit</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/dataUser');
+        }
+    }
+
+    public function gantiPassword($id_user)
+    {
+        $user = $this->db->get_where('user', ['id' => $id_user])->row_array();
+        $data = [
+            'judul'  => "Halaman Admin | Ganti Password User",
+            'user'   => $user
+        ];
+
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password1]', [
+            'required' => 'Kolom ini harus diisi',
+            'min_length' => 'Password minimal 8 karakter',
+            'matches' => 'Isi password harus sama'
+        ]);
+        $this->form_validation->set_rules('password1', 'Konfirmasi Password', 'required|trim|min_length[8]|matches[password]', [
+            'required' => 'Kolom ini harus diisi',
+            'min_length' => 'Password minimal 8 karakter',
+            'matches' => 'Isi password harus sama'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/ganti_password');
+            $this->load->view('templates/footer');
+        } else {
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+            $this->db->set('password', $password);
+            $this->db->where('id', $id_user);
+            $this->db->update('user');
+
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Password berhasil diganti</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('Admin/dataUser');
+        }
+    }
+
+    public function hapusUser($id_user)
+    {
+
+        $this->db->delete('user', ['id' => $id_user]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>User Berhasil Dihapus</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('Admin/dataUser');
+    }
 }
