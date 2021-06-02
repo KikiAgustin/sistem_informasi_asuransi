@@ -70,7 +70,7 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-sm-12 col-lg-12">Formulir klaim yang telah diisi dengan benar dan lengkap. <a href="">Unduh di sini</a>
+                            <div class="col-sm-12 col-lg-12">Formulir klaim yang telah diisi dengan benar dan lengkap. <a target="_blank" href="<?= base_url('assets/formulir/formulir_klaim.pdf'); ?>">Unduh di sini</a>
                             </div>
                         </div>
                         <hr>
