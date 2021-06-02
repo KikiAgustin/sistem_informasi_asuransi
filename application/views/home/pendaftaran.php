@@ -54,11 +54,11 @@
                     <h2>Pendaftaran Asuransi Pendidikan</h2>
                     <p>
                         Sebelum teman-teman mendaftar Asuransi pendidikan pada perusahaan kami, silahkan baca terlebih dahulu informasi dibawah ini yang bisa anda download
-                        <div class="portfolio-info">
-                            <ul>
-                                <li><strong>Informasi Asuransi Pendidikan</strong>: <a target="_blank" href="<?= base_url('assets/formulir/informasi.pdf'); ?>">download disini</a></li>
-                            </ul>
-                        </div>
+                    <div class="portfolio-info">
+                        <ul>
+                            <li><strong>Informasi Asuransi Pendidikan</strong>: <a target="_blank" href="<?= base_url('assets/formulir/informasi_asuransi.pdf'); ?>">download disini</a></li>
+                        </ul>
+                    </div>
                     </p>
                 </div>
             </div>
